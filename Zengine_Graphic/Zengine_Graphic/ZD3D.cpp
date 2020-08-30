@@ -7,10 +7,13 @@ void ZD3D::Initialize(HWND hWnd)
 
 	SwapChainDesc.BufferCount = 1;
 	SwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	SwapChainDesc.BufferDesc.Width = SCREEN_WIDTH;
+	SwapChainDesc.BufferDesc.Height = SCREEN_HEIGHT;
 	SwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	SwapChainDesc.OutputWindow = hWnd;
 	SwapChainDesc.SampleDesc.Count = 4;
 	SwapChainDesc.Windowed = true;
+	SwapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	D3D11CreateDeviceAndSwapChain
 	(
@@ -42,14 +45,16 @@ void ZD3D::Initialize(HWND hWnd)
 
 	Viewport.TopLeftX = 0;
 	Viewport.TopLeftY = 0;
-	Viewport.Width = 800;
-	Viewport.Height = 600;
+	Viewport.Width = SCREEN_WIDTH;
+	Viewport.Height = SCREEN_HEIGHT;
 
 	m_pDeviceContext->RSSetViewports(1, &Viewport);
 }
 
 void ZD3D::Clean()
 {
+	m_pSwapChain->SetFullscreenState(false, NULL);
+
 	m_pSwapChain->Release();
 	m_pBackBuffer->Release();
 	m_pDevice->Release();

@@ -16,7 +16,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	wc.lpfnWndProc = WinProc;
 	wc.hInstance = hInstance;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
+	//wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
 	wc.lpszClassName = L"WindowClass";
 	RegisterClassEx(&wc);
 
@@ -31,7 +31,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 		L"WindowClass",
 		L"Zengine",
 		WS_OVERLAPPEDWINDOW,
-		300, 300, wr.right - wr.left, wr.bottom - wr.top,
+		300, 300, 
+		SCREEN_WIDTH, SCREEN_HEIGHT,
 		NULL, NULL,
 		hInstance,
 		NULL

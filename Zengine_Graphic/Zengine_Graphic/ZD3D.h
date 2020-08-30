@@ -6,6 +6,9 @@
 
 #include <d3d11.h>
 
+#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 800
+
 class ZD3D
 {
 public:
